@@ -29,7 +29,7 @@ const SignIn = () => {
             <input
              type='text' 
               className= {loginStyles.userInput}
-              placeholder='Enter user Name'
+              placeholder='Enter user name'
             />
 
 

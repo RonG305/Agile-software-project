@@ -30,7 +30,7 @@ const SignUp = () => {
               <input
                type='text' 
                 className= {loginStyles.userInput}
-                placeholder='Enter user Name'
+                placeholder='Enter user name'
               />
 
               <p className={loginStyles.userName}>Email</p>
