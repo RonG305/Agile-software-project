@@ -1,24 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/authentication/login";
+import RegisterPage from "./pages/authentication/register";
+import ForgotPassword from "./pages/authentication/forgotpassword";
+import DashboardPage from "./pages/Dashboard";
+// import NavbarHeader from "./components/Navbar";
+import ThemeWrapper from "./components/ThemeWrapper";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <div className=' font-Inter'>
-      <BrowserRouter>
-          <Routes>
-            <Route path='/'  element={<SignIn />} />
-            <Route  path='/signup' element={<SignUp />}/>
-          </Routes>
-      </BrowserRouter>
-    </div>
-  )
+    <>
+      {/* <NavbarHeader /> */}
+      <Router>
+        <Routes>
+          <Route element={<ThemeWrapper />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="/authentication/sign-in" element={<LoginPage />} />
+            <Route path="/authentication/sign-up" element={<RegisterPage />} />
+            <Route
+              path="/authentication/forgot-password"
+              element={<ForgotPassword />}
+            />
+          </Route>
+        </Routes>
+      </Router>
+    </>
+  );
 }
-
-export default App
