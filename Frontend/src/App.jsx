@@ -15,7 +15,7 @@ function App() {
   return (
     <div className=' font-Inter'>
       <BrowserRouter>
-      
+          
           <Routes>
             <Route path='/' element={<SignIn />}/>
             <Route path='/signup' element={<SignUp />} />

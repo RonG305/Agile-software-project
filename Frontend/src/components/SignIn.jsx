@@ -1,7 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState("")
+  const [userData, setUserData] = useState({
+    username: '',
+    password: ''
+  })
+
+  const handleChange = (event) => {
+    const {name, value} = event.target
+    setUserData({
+      ...userData,
+      [name]: value
+    })
+  }
+
+
+  const handleSubmit = async(event) => {
+    event.preventDefault()
+
+    try {
+      const response = await fetch('http://localhost:8000/api/signin/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+
+      if(response.ok) {
+        console.log('login succesiful')
+        navigate('/main/tenants')
+        
+      } else {
+        console.log('server error while submitting data')
+        setErrorMessage("User name or password is incorrect")
+      }
+
+    } catch(error) {
+      console.log('An error occured while submitting data', error)
+     
+    }
+  }
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMessage("")
+    }, 5000)
+  })
 
 
   const loginStyles = {
@@ -23,11 +73,14 @@ const SignIn = () => {
         <div className=' justify-center'>
             <img width={150}  src="/logo.png" alt="Logo" />
         </div>
-        
+        <form onSubmit={handleSubmit}>
             <p className={loginStyles.userName}>User Name</p>
 
             <input
              type='text' 
+              name='username'
+              value={userData.username}
+              onChange={handleChange}
               className= {loginStyles.userInput}
               placeholder='Enter user Name'
             />
@@ -36,12 +89,20 @@ const SignIn = () => {
             <p className=' flex items-start'>Password</p>
             <input 
                 type='password'
+                name='password'
+                value={userData.password}
+                onChange={handleChange}
                 className={loginStyles.userInput}
                 placeholder='Enter password'
             />
 
 
-            <button className={loginStyles.buttonStyle}>Submit</button>
+            <button type='submit' className={loginStyles.buttonStyle}>Submit</button>
+            </form>
+
+
+            {errorMessage &&  <p className=' px-5 py-1 bg-red-400 rounded-md text-white'>{errorMessage}</p>}
+           
 
             <a href="#" className=' flex items-start mb-5'>Forgot Password?</a>
 

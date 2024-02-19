@@ -11,9 +11,12 @@ function Main() {
     <>
     <Sidebar />
     <Navbar />
+    <div className=' ml-36 mx-4'>
     <Routes>
       <Route path='/tenants/' element={<Tenants />} />
     </Routes>
+    </div>
+   
 
     </>
   )
