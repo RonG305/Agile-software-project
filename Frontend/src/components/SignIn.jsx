@@ -5,7 +5,7 @@ const SignIn = () => {
 
 
   const loginStyles = {
-    mainContainer : ' h-fit w-full flex items-center justify-center',
+    mainContainer : ' h-fit w-full flex items-center justify-center mt-5',
     subContainer: ' md:w-1/2 md:h-1/2 w-full h-full bg-slate-200 rounded-md p-5 flex flex-col ',
     signInHeader: ' font-bold text-center my-2 text-2xl',
     userName: ' flex items-start',
