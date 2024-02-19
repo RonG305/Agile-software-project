@@ -4,6 +4,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import Sidebar from './Sidebar'
 import Navbar from './Navbar'
+import Tenants from './Tenants'
 
 function Main() {
   return (
@@ -11,9 +12,7 @@ function Main() {
     <Sidebar />
     <Navbar />
     <Routes>
-     
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/signin' element={<SignIn />} />
+      <Route path='/tenants/' element={<Tenants />} />
     </Routes>
 
     </>
